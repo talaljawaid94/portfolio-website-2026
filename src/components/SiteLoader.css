@@ -1,0 +1,41 @@
+.site-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: visibility 0.6s step-end;
+}
+
+.site-loader-grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.site-loader-cell {
+  background: var(--bg);
+  border: 1px solid var(--grid-line);
+  transform: scale(1);
+  opacity: 1;
+  transition: transform 0.9s var(--ease-out-expo), opacity 0.9s var(--ease-out-expo);
+}
+
+.site-loader.hide .site-loader-cell {
+  transform: scale(0);
+  opacity: 0;
+}
+
+.site-loader-greeting {
+  position: relative;
+  font-size: clamp(28px, 5vw, 48px);
+  transition: opacity 0.5s ease;
+}
+
+.site-loader.hide .site-loader-greeting {
+  opacity: 0;
+}

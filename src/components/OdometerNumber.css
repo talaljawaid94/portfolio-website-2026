@@ -1,0 +1,30 @@
+.odometer-number {
+  display: inline-flex;
+  align-items: baseline;
+  font-variant-numeric: tabular-nums;
+}
+
+.odometer-static {
+  display: inline-block;
+}
+
+.jackpot-digit-cell {
+  display: inline-block;
+  overflow: hidden;
+  height: 1em;
+  line-height: 1;
+  vertical-align: baseline;
+}
+
+.jackpot-digit-strip {
+  display: flex;
+  flex-direction: column;
+  transition: transform 1.1s var(--ease-out-expo);
+}
+
+.jackpot-digit {
+  height: 1em;
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+}

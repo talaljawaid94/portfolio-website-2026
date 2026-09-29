@@ -1,0 +1,235 @@
+.about-hero {
+  padding-top: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  border: 1px solid var(--grid-line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.about-hero-text {
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+}
+
+.about-hero-text h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.2;
+}
+
+.about-quote {
+  color: var(--text-dim);
+  font-style: italic;
+  max-width: 420px;
+  line-height: 1.6;
+  border-left: 2px solid var(--accent-blue);
+  padding-left: 16px;
+}
+
+.about-portrait {
+  background: linear-gradient(160deg, #0b1a4a, #2f5cff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+}
+.about-portrait span {
+  font-family: var(--font-serif);
+  font-size: 96px;
+  color: rgba(245, 246, 250, 0.35);
+}
+
+.about-timeline,
+.about-measuring,
+.about-bio {
+  margin-top: 100px;
+}
+
+.timeline {
+  margin-top: 32px;
+}
+
+.timeline-row {
+  display: grid;
+  grid-template-columns: 20px 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  border-top: 1px solid var(--grid-line);
+  opacity: 0.4;
+  transform: translateX(-8px);
+  transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo);
+}
+.timeline-row.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+.timeline-row:last-child {
+  border-bottom: 1px solid var(--grid-line);
+}
+
+.timeline-checkbox {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--accent-blue);
+}
+
+.timeline-role p {
+  font-size: 24px;
+  margin-top: 4px;
+}
+
+.timeline-dates {
+  color: var(--text-dim);
+  font-size: 13px;
+  text-align: right;
+}
+
+.measuring-grid {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 1px solid var(--grid-line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.measuring-years {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-right: 1px solid var(--grid-line);
+}
+.measuring-years p {
+  font-size: 28px;
+}
+.measuring-years span {
+  color: var(--accent-blue);
+}
+
+.measuring-stat {
+  padding: 28px;
+  border-right: 1px solid var(--grid-line);
+}
+.measuring-stat:last-child {
+  border-right: none;
+}
+
+.measuring-stat-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.measuring-stat-value {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--accent-gold);
+  font-size: 32px;
+}
+
+.about-odometer {
+  margin-top: 24px;
+  background: var(--text-white);
+  color: var(--bg);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.about-odometer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px;
+  border-top: 1px solid rgba(1, 5, 16, 0.1);
+  border-left: 4px solid var(--accent-blue);
+}
+.about-odometer-row:first-child {
+  border-top: none;
+}
+
+.about-odometer-value {
+  font-size: clamp(24px, 3.5vw, 32px);
+  color: var(--accent-blue);
+}
+
+.about-odometer-label {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  gap: 2px;
+  color: #5b6178;
+}
+
+.photo-strip {
+  margin-top: 100px;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding: 0 32px;
+  scrollbar-width: none;
+}
+.photo-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.photo-strip-item {
+  position: relative;
+  flex: 0 0 220px;
+  height: 260px;
+  border-radius: 12px;
+  background: linear-gradient(160deg, #101830, #1c2b6b);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+}
+
+.photo-strip-caption {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.about-bio-card {
+  border: 2px solid var(--accent-blue);
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 640px;
+}
+
+.about-bio-card h2 {
+  font-size: clamp(28px, 4vw, 40px);
+}
+
+.about-bio-body {
+  margin-top: 20px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+@media (max-width: 860px) {
+  .about-hero,
+  .measuring-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-hero-text {
+    padding: 32px 24px;
+  }
+  .measuring-years,
+  .measuring-stat {
+    border-right: none;
+    border-bottom: 1px solid var(--grid-line);
+  }
+  .timeline-row {
+    grid-template-columns: 16px 1fr;
+  }
+  .timeline-dates {
+    grid-column: 2;
+    text-align: left;
+  }
+}

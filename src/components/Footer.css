@@ -1,0 +1,131 @@
+.footer {
+  margin-top: 40px;
+  padding-bottom: var(--sticky-cta-height);
+}
+
+/* Inset by the same amount as .nav-inner's own side padding, so this card's
+   left/right edges line up exactly with where the nav logo and "Based in"
+   text start and end — not a separate, wider or narrower measurement. */
+.footer-cta {
+  background: #0d1a4a; /* same navy as .testimonial-card in Testimonials.css */
+  margin: 0 clamp(20px, 5vw, 64px);
+  padding: 48px clamp(24px, 4vw, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-cta-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-heading {
+  font-size: clamp(40px, 6vw, 64px);
+  margin: 8px 0 20px;
+}
+
+.footer-email {
+  color: #ff4fd8; /* same pink as the arrow hover in .footer-arrow:hover below */
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+.footer-email:hover {
+  text-decoration: underline;
+}
+
+/* Decorative arrow-down.svg glyphs. At rest every arrow points up-right in
+   unison; hovering any single one rotates just that arrow the rest of the
+   way to point due right. */
+.footer-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px 28px;
+  opacity: 0.75;
+}
+
+.footer-arrow {
+  display: block;
+  width: clamp(28px, 3.2vw, 48px);
+  height: clamp(28px, 3.2vw, 48px);
+  background: var(--text-white);
+  -webkit-mask: url("/icons/arrow-down.svg") center / contain no-repeat;
+  mask: url("/icons/arrow-down.svg") center / contain no-repeat;
+  transform: rotate(-135deg); /* base graphic points down; this points up-right */
+  transition: transform 0.5s var(--ease-out-expo);
+}
+.footer-arrow:hover {
+  transform: rotate(-90deg); /* completes the turn to point due right */
+  background: #ff4fd8; /* same pink as the ✳ cell-asterisk in Testimonials.css */
+}
+
+/* Full width, inset by the same clamp() as the nav/banner — not the
+   centered, narrower .container used elsewhere on the page. */
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 28px clamp(20px, 5vw, 64px);
+}
+
+.footer-socials {
+  display: flex;
+  gap: 24px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+}
+.footer-socials a:hover {
+  color: var(--accent-blue);
+}
+
+/* Full width, inset by the same clamp() as the nav/banner (not the centered
+   .container), so the left and right text align with everything above it.
+   Also shares the site's mono "secondary" font, same as every other
+   small-print label (eyebrows, dates, person-role…). */
+.footer-credit {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-top: 1px solid var(--grid-line);
+  padding: 26px clamp(20px, 5vw, 64px);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.footer-credit-logo {
+  display: inline-block; /* base.css sets img { display: block } sitewide */
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  vertical-align: -2px;
+}
+
+@media (max-width: 860px) {
+  .footer-cta {
+    margin: 0 16px;
+  }
+  .footer-bottom,
+  .footer-credit {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-cta {
+    padding: 32px 24px;
+  }
+  .footer-icon-grid {
+    display: none;
+  }
+}

@@ -1,0 +1,437 @@
+.case-study-gate {
+  padding-top: 100px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.nda-stamp {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 2px dashed var(--text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+}
+
+.case-study-gate h1 {
+  font-size: clamp(32px, 5vw, 48px);
+  margin-bottom: 24px;
+}
+
+.case-study-gate-sub {
+  color: var(--text-dim);
+  margin-bottom: 24px;
+}
+
+.case-study-gate-form {
+  display: flex;
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid var(--grid-line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.case-study-gate-form input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 14px 20px;
+  color: var(--text-white);
+  font-family: var(--font-sans);
+  outline: none;
+}
+
+.case-study-gate-form button {
+  background: var(--accent-blue);
+  color: var(--text-white);
+  border: none;
+  width: 48px;
+}
+
+.case-study-gate-error {
+  color: #ff6b6b;
+  font-size: 13px;
+}
+
+.case-study {
+  padding-top: 48px;
+  padding-bottom: 100px;
+  /* per-case-study accent palette, set inline from content.js `accent` */
+  --case-heading: var(--accent-blue);
+  --case-quotation: var(--accent-gold);
+  --case-points: var(--accent-gold);
+}
+
+/* ---------- Header: two-column grid, colored left panel ---------- */
+
+.cs-header {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  min-height: 280px;
+  margin: 24px 0 32px;
+  border: 1px solid var(--grid-line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.cs-header-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px;
+  background: var(--bg-light, #00153d);
+}
+
+.cs-back-btn {
+  width: fit-content;
+  padding: 12px 24px;
+  border: 3px solid var(--bg);
+  background: var(--bg);
+  font-size: 14px;
+}
+
+.cs-header-content-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cs-project-tag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.cs-project-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--case-heading);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  box-shadow: 4px 4px 0 rgba(1, 5, 16, 0.4);
+  flex-shrink: 0;
+}
+
+.cs-heading {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.3;
+  color: var(--case-heading);
+  margin: 0;
+  max-width: 90%;
+}
+
+.cs-header-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 24px;
+}
+
+.cs-detail-cell {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0;
+  border-top: 1px solid var(--grid-line);
+}
+.cs-detail-cell:first-child {
+  border-top: none;
+}
+
+.cs-detail-label {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+.cs-detail-value {
+  font-size: clamp(1rem, 1vw, 1.3rem);
+  text-align: right;
+}
+
+.cs-visit-link {
+  color: var(--accent-blue);
+}
+
+.cs-key-fact-row {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--grid-line);
+  background: var(--bg);
+}
+
+.cs-key-fact-tag {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--case-quotation);
+  white-space: nowrap;
+}
+
+.cs-key-fact-text {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.case-study-hero {
+  height: 360px;
+  border-radius: 12px;
+  margin-bottom: 48px;
+}
+
+/* ---------- Body: sticky TOC sidebar + content column ---------- */
+
+.cs-body-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.cs-toc {
+  position: sticky;
+  top: 100px;
+}
+
+.cs-toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-left: 2px solid var(--grid-line);
+}
+
+.cs-toc a {
+  display: block;
+  padding: 2px 0 2px 16px;
+  font-size: 13px;
+  color: var(--text-dim);
+  transition: color 0.2s ease;
+}
+
+.cs-toc li.active {
+  margin-left: -2px;
+  border-left: 2px solid var(--case-heading);
+}
+.cs-toc li.active a {
+  color: var(--text-white);
+}
+
+.cs-content {
+  min-width: 0;
+}
+
+.cs-contributions {
+  margin-bottom: 48px;
+}
+.cs-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+.cs-tag-pill {
+  border: 1px solid var(--grid-line);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 13px;
+}
+
+.cs-block {
+  max-width: 720px;
+  margin-bottom: 56px;
+  scroll-margin-top: 110px;
+}
+
+.cs-block-heading {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--case-quotation);
+}
+
+.cs-block p {
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+/* labeled bullet points — colored dot + bold "label:" lead-in */
+.point-list {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.point-item {
+  position: relative;
+  padding-left: 18px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.point-dot {
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--case-points);
+}
+
+.point-label {
+  color: var(--case-points);
+  font-weight: 500;
+}
+
+.cs-solution-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.cs-solution-item {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 16px;
+}
+
+.cs-solution-number {
+  color: var(--accent-blue);
+  font-size: 14px;
+}
+
+.cs-solution-item h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.cs-challenge-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cs-challenge-item {
+  border-left: 2px solid var(--grid-line);
+  padding-left: 20px;
+}
+
+.cs-challenge-problem {
+  color: var(--text-white);
+}
+
+.cs-challenge-solution {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.cs-challenge-arrow {
+  color: var(--accent-blue);
+  flex-shrink: 0;
+}
+
+.cs-next-card {
+  display: block;
+  border: 1px solid var(--grid-line);
+  border-radius: 16px;
+  padding: 28px;
+  margin-top: 40px;
+  transition: border-color 0.2s ease;
+}
+.cs-next-card:hover {
+  border-color: var(--accent-blue);
+}
+
+.cs-next-card-body {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 12px;
+}
+
+.cs-next-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.cs-next-title {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.cs-next-arrow {
+  margin-left: auto;
+  color: var(--accent-blue);
+  font-size: 20px;
+}
+
+.cs-fab {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  border: 1px solid var(--grid-line);
+  border-radius: 8px;
+  color: var(--text-white);
+  z-index: 60;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.cs-fab.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (max-width: 860px) {
+  .cs-header {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .cs-header-right {
+    padding: 24px;
+  }
+  .cs-body-layout {
+    grid-template-columns: 1fr;
+  }
+  .cs-toc {
+    display: none;
+  }
+}

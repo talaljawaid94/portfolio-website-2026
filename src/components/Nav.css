@@ -1,0 +1,97 @@
+.nav {
+  border-bottom: 1px solid var(--grid-line);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
+}
+
+/* Same horizontal inset as the hero grid (.hero-grid-wrap), so
+   the logo sits on the grid's left edge and "Based in" ends on its right. */
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px clamp(20px, 5vw, 64px);
+  gap: 24px;
+}
+
+.nav-logo {
+  flex-shrink: 0;
+  transition: transform 0.3s var(--ease-out-expo);
+}
+.nav-logo:hover {
+  transform: rotate(-6deg);
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  font-family: var(--font-serif);
+  font-size: 18px;
+}
+
+.nav-link {
+  position: relative;
+  color: var(--text-white);
+  padding-bottom: 2px;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 100%;
+  background: var(--accent-blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+.nav-link:hover::after,
+.nav-link.is-active::after {
+  transform: scaleX(1);
+}
+
+.nav-meta {
+  display: flex;
+  gap: 32px;
+  font-size: 13px;
+  text-align: left;
+  margin-left: auto;
+}
+
+.nav-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-menu-btn {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--grid-line);
+  background: transparent;
+  color: var(--text-white);
+  font-size: 18px;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 860px) {
+  .nav-inner {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .nav-links {
+    display: none;
+  }
+  .nav-meta {
+    display: none;
+  }
+  .nav-menu-btn {
+    display: flex;
+    margin-left: auto;
+  }
+}
