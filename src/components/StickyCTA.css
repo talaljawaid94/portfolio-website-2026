@@ -1,0 +1,80 @@
+.sticky-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--sticky-cta-height);
+  z-index: 60;
+  background: #060b23;
+  border-top: 1px solid var(--grid-line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Same inset as the nav/footer, so this bar's content lines up with them. */
+  padding: 0 clamp(20px, 5vw, 64px);
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.sticky-cta.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.sticky-cta-text {
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.sticky-cta-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.sticky-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--grid-line);
+  font-size: 13px;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+/* "Drop a Hi!" — filled with the site's grid/accent blue. */
+.sticky-cta-btn:not(.filled) {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: var(--text-white);
+}
+.sticky-cta-btn:not(.filled):hover {
+  background: #4a72ff;
+  border-color: #4a72ff;
+}
+/* "Download Resume" — turns the site's accent gold on hover. */
+.sticky-cta-btn.filled {
+  background: var(--text-white);
+  color: var(--bg);
+}
+.sticky-cta-btn.filled:hover {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+
+@media (max-width: 860px) {
+  .sticky-cta {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --sticky-cta-height: 96px;
+  }
+  .sticky-cta {
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+  }
+}

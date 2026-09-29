@@ -1,0 +1,199 @@
+.worked-with {
+  padding: 120px clamp(20px, 5vw, 64px); /* same inset as the hero grid */
+}
+
+.worked-with-tag {
+  display: block;
+  margin-bottom: 20px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+}
+
+.worked-with-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  border: 1px solid var(--grid-line);
+}
+
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 420px;
+  background: #0d1a4a;
+}
+
+/* One fixed size for every quote — short or long — so switching companies
+   never changes the type scale, only how tall the card grows. */
+.testimonial-quote {
+  margin: 0;
+  padding: 32px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: clamp(0.95rem, 1.05vw, 1.1rem);
+  line-height: 1.7;
+  color: #6d93ff;
+  animation: quote-in 0.35s var(--ease-out-expo);
+}
+@keyframes quote-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.testimonial-person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+  padding: 16px 20px;
+  background: var(--bg);
+  border: 5px solid #0d1a4a;
+}
+.person-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  flex-shrink: 0;
+}
+.person-info {
+  display: flex;
+  flex-direction: column;
+}
+.person-name {
+  font-size: 16px;
+  color: var(--text-white);
+}
+.person-role {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+}
+
+/* logo grid: 3x3 cells */
+.logos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  border-left: 1px solid var(--grid-line);
+}
+
+.logo-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+  padding: 0;
+  color: var(--text-white);
+  font: inherit;
+  background: none;
+  border: 1px solid #0d1a4a;
+  opacity: 0.75;
+  cursor: pointer;
+  transition: background 0.25s, filter 0.2s, opacity 0.2s, transform 0.15s, border-color 0.2s;
+}
+/* Every logo sits in the same fixed box (aspect 140:56) and is scaled by its
+   visible artwork (see logoStyle in Testimonials.jsx), so wide and square marks
+   — SVG or PNG — end up at the same visual size. */
+.logo-box {
+  position: relative;
+  display: block;
+  width: clamp(88px, 9vw, 140px);
+  aspect-ratio: 140 / 56;
+  pointer-events: none;
+}
+.logo-img {
+  position: absolute;
+  height: auto;
+  max-width: none;
+}
+.logo-img.fit {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logo-cell:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  border: 1px solid transparent;
+  background-image: linear-gradient(#10163f, #10163f),
+    linear-gradient(135deg, #ff8a3d, #3d2b8f 60%, #1c1440);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+.logo-cell:active {
+  transform: translateY(0) scale(0.98);
+}
+.logo-cell.active {
+  opacity: 1;
+  background: linear-gradient(180deg, #8a3a2a 0%, #4a3aa0 65%, #3d4fd0 100%);
+}
+
+.logo-cell.not-clickable {
+  cursor: default;
+}
+.logo-cell.not-clickable:hover {
+  opacity: 0.75;
+  transform: none;
+  border: 1px solid #0d1a4a;
+  background: none;
+}
+
+.cell-asterisk {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 14px;
+  line-height: 1;
+  color: #ff4fd8;
+}
+
+
+/* wipe-in when the grid scrolls into view, staggered by animation-delay */
+.logo-cell.draw-left { clip-path: inset(0 100% 0 0); animation-name: cell-draw-left; }
+.logo-cell.draw-right { clip-path: inset(0 0 0 100%); animation-name: cell-draw-right; }
+.logo-cell.draw-top { clip-path: inset(100% 0 0 0); animation-name: cell-draw-top; }
+.logo-cell.draw-bottom { clip-path: inset(0 0 100% 0); animation-name: cell-draw-bottom; }
+.logo-cell {
+  animation-duration: 0.6s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+.logos-grid.in-view .logo-cell {
+  animation-play-state: running;
+}
+@keyframes cell-draw-left { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0); } }
+@keyframes cell-draw-right { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0); } }
+@keyframes cell-draw-top { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0); } }
+@keyframes cell-draw-bottom { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
+
+@media (max-width: 900px) {
+  .worked-with-grid {
+    grid-template-columns: 1fr;
+  }
+  .logos-grid {
+    border-left: none;
+    border-top: 1px solid var(--grid-line);
+  }
+}
+@media (max-width: 768px) {
+  .worked-with {
+    padding: 80px 16px;
+  }
+  .logos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-cell {
+    clip-path: none;
+    animation: none;
+  }
+}

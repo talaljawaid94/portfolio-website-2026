@@ -1,0 +1,174 @@
+:root {
+  --bg: #010510;
+  --grid-line: #0b2049;
+  --grid-texture: rgba(66, 110, 255, 0.4);
+  --grid-cell: clamp(68px, 6.6vw, 110px);
+  --accent-blue: #2f5cff;
+  --accent-gold: #e9fa7b;
+  --text-white: #f5f6fa;
+  --text-dim: #b7bcd0;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --sticky-cta-height: 56px;
+
+  --font-sans: "Host Grotesk", "Inter", sans-serif;
+  --font-serif: "Fraunces", serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-white);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.serif {
+  font-family: var(--font-serif);
+}
+
+.serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--accent-blue);
+}
+
+/* corner-bracket keyword highlight, used across headings */
+.bracket-word {
+  position: relative;
+  display: inline-block;
+  border: 1px solid var(--accent-blue);
+  padding: 0 6px;
+  margin: 0 2px;
+}
+.bracket-word::before,
+.bracket-word::after,
+.bracket-word span::before,
+.bracket-word span::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--accent-blue);
+  background: var(--bg);
+}
+.bracket-word::before { top: -4px; left: -4px; }
+.bracket-word::after { top: -4px; right: -4px; }
+.bracket-word span::before { bottom: -4px; left: -4px; }
+.bracket-word span::after { bottom: -4px; right: -4px; }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid var(--grid-line);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 8px #4ade80;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--grid-line);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.btn.filled {
+  background: var(--text-white);
+  color: var(--bg);
+  border-color: var(--text-white);
+}
+.btn.filled:hover {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+.btn:not(.filled):hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+/* fine graph-paper texture used behind hero/feature cards */
+.grid-texture {
+  position: relative;
+  background-image: repeating-linear-gradient(
+      to right,
+      var(--grid-texture) 0 1px,
+      transparent 1px var(--grid-cell)
+    ),
+    repeating-linear-gradient(to bottom, var(--grid-texture) 0 1px, transparent 1px var(--grid-cell));
+  background-position: -1px -1px;
+}
+
+::selection {
+  background: var(--accent-blue);
+  color: var(--text-white);
+}
