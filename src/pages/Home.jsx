@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import BracketWord from "../components/BracketWord";
 import OdometerNumber from "../components/OdometerNumber";
 import Marquee from "../components/Marquee";
 import Logo from "../components/Logo";
 import Testimonials from "../components/Testimonials";
+import CaseStudyLink from "../components/CaseStudyLink";
 import {
   heroContent,
   homeStats,
@@ -38,33 +38,6 @@ for (let row = 1; row <= HERO_ROWS; row++) {
     );
     if (!covered) HERO_FILLER_CELLS.push({ col, row });
   }
-}
-
-// The card grid and the hero teaser both open a study's inner
-// /case-study/:id page — except when `useExternalPreview` is set, where the
-// inner write-up isn't ready yet and this opens `meta.liveUrl` (the Figma
-// prototype) in a new tab instead. Remove that flag per study once its page
-// is ready, and this goes back to routing internally on its own.
-function CaseStudyLink({ study, className, style, children, ...rest }) {
-  if (study.useExternalPreview && study.meta?.liveUrl) {
-    return (
-      <a
-        href={study.meta.liveUrl}
-        target="_blank"
-        rel="noreferrer"
-        className={className}
-        style={style}
-        {...rest}
-      >
-        {children}
-      </a>
-    );
-  }
-  return (
-    <Link to={`/case-study/${study.id}`} className={className} style={style} {...rest}>
-      {children}
-    </Link>
-  );
 }
 
 // Intentions grid: 16 columns x 8 rows (row 1 and row 8 are bare filler rows), same technique as the hero grid.

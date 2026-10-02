@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import PointItem from "../components/PointItem";
 import BeforeAfter from "../components/BeforeAfter";
+import CaseStudyLink from "../components/CaseStudyLink";
 import useScrollSpy from "../hooks/useScrollSpy";
 import { caseStudies, visibleCaseStudies } from "../data/content";
 import "./CaseStudy.css";
@@ -458,7 +459,7 @@ function CaseStudyBody({ study }) {
           grid, so it scrolls away once the last section is done */}
       <div className="cs-next-cards">
         {otherStudies.map((cs) => (
-          <Link key={cs.id} to={`/case-study/${cs.id}`} className="cs-next-card">
+          <CaseStudyLink key={cs.id} study={cs} className="cs-next-card">
             <div className="cs-next-card-body">
               <div>
                 <span className="eyebrow cs-next-meta">
@@ -468,7 +469,7 @@ function CaseStudyBody({ study }) {
               </div>
               <span className="cs-next-thumb" style={{ background: cs.gradient }} />
             </div>
-          </Link>
+          </CaseStudyLink>
         ))}
       </div>
 
