@@ -201,11 +201,16 @@ export const caseStudies = [
     id: "case-study-two",
     company: "INVYGO",
     companyInitial: "I",
+    // white-fill logo — shown on the accent-colored badge in the case study header
+    logo: "/Logos/invygo.svg",
+    // real visible bounds of the artwork inside its viewBox (same technique as
+    // `testimonials[].ink`) — used to crop the baked-in whitespace so the mark
+    // sits flush-left instead of centered with padding on both sides
+    logoInk: [234, 102, 26, 31.8, 181.5, 38.3],
     tag: "CLIENT PROJECT",
-    title: "Reducing billing Confusion to recover $100K+/month and cut contact rate by ~23%",
+    title: "Reducing billing confusion to recover $52K+/month and cut billing support by ~23%",
     year: "2024",
     locked: false, // temporarily open — was gated, set back to true when ready
-    useExternalPreview: true, // opens meta.liveUrl in a new tab instead of the inner page — remove once the write-up is ready
     password: "letmein", // same cosmetic gate as case one; set null to open it
     color: "#1B1D1F",
     gradient: "linear-gradient(160deg, #2b1406 0%, #7a3b12 55%, #f0c14b 100%)",
@@ -219,23 +224,361 @@ export const caseStudies = [
     },
 
     meta: {
-      role: "Product Designer",
-      team: "Solo",
-      duration: "2 months",
+      role: "Senior Product Designer",
+      team: "Subscribe to Own",
+      duration: "3.5 months",
+      // hides the "Live project" row in the case study header (the link below
+      // is still used elsewhere, e.g. the Home card's external preview)
+      hideLiveProject: true,
       liveUrl:
         "https://www.figma.com/proto/UILRkfjepNAkkBkSO0Fmyc/invygo---Billing-Clarification?page-id=0%3A1&node-id=0-269&viewport=105%2C148%2C0.49&t=4Svdm1GI12oF9J33-1&scaling=contain&content-scaling=fixed",
     },
     contributions: ["Product Design", "Design System", "Prototyping"],
 
-    overview:
-      "Redesigned the billing experience to make charges easier to understand, reduce avoidable support contacts, and improve revenue recovery.",
-    challenge: { intro: "Describe the friction or business problem you were solving." },
-    solutions: [
-      { heading: "The Process", body: "Walk through discovery, iterations, and key decisions." },
-      { heading: "The Result", body: "Share the shipped outcome and the metrics that moved." },
+    // Overview section removed — the same context now opens The Challenge
+    // below instead. Set this back to a string to bring the section back.
+    overview: null,
+    challenge: {
+      intro:
+        "Invygo's Subscribe-to-Own (STO) product was scaling rapidly, but the post-booking experience had become a major source of friction. Immediately after booking, users frequently reached out to customer support (CX) teams for clarification around:",
+      // rendered as three icon boxes instead of a bullet list — see
+      // `.cs-challenge-boxes` in CaseStudy.css
+      highlights: [
+        { icon: "receipt", text: "Billing and add-on charges" },
+        { icon: "alert", text: "Returns and force collection" },
+        { icon: "documents", text: "Booking confirmation and government processes" },
+      ],
+    },
+    // Intro copy shown under the "The Challenge" heading (the `solved`
+    // section), above the numbered solutions list.
+    solutionsIntro:
+      "What looked like a usability issue had become a business risk. Gaps in clarity after booking were directly affecting revenue, operations, and support capacity.",
+    // 3-stat grid shown under solutionsIntro, same icon/label/value style as
+    // the Home page's quickStats — reuses the headline numbers from the title.
+    impactStats: [
+      { icon: "loss", value: "~$120K/month", label: "LOST REVENUE FROM DELAYS & CANCELLATIONS" },
+      { icon: "support", value: "~62%", label: "SUPPORT CONTACTS AFTER BOOKING" },
+      { icon: "clock", value: "~10,300 hours", label: "MONTHLY SUPPORT HOURS SPENT" },
     ],
-    outcomes: ["A measurable result worth highlighting."],
-    conclusion: "A closing paragraph tying it all together.",
+    // Body copy shown below the impact stats grid
+    solutionsClosing:
+      "Billing confusion caused delays, disputes, and force collection escalations, eroding trust, because the system prioritized charging over clarity.",
+    // Placeholder "The Process / The Result" list removed — set this back to
+    // an array of { heading, body } to bring it back.
+    solutions: null,
+    myRole:
+      "I led this initiative from problem to delivery, aligning teams around one clear goal → reduce confusion before payment.",
+    myRoleGrid: [
+      {
+        icon: "others-1",
+        heading: "Collaboration",
+        body: "Worked closely with Data, CX, Ops, Finance, and Engineering to understand the full impact across the business.",
+      },
+      {
+        icon: "sun",
+        heading: "Clarity",
+        body: "Used contact data, billing trends, and support logs to clearly define the real problem.",
+      },
+      {
+        icon: "achievement",
+        heading: "Opportunity",
+        body: "Identified billing as the highest-impact opportunity to solve first.",
+      },
+      {
+        icon: "strategy",
+        heading: "Strategy",
+        body: "Defined the experience principles and solution direction to enable clarity at scale.",
+      },
+      {
+        icon: "goal",
+        heading: "Delivery",
+        body: "Aligned teams and drove execution from concept through launch.",
+      },
+    ],
+    // Research section — CR/billing breakdown dashboards referenced during
+    // discovery, shown above the body text.
+    researchImages: [
+      {
+        src: "/Placeholder/bayzat/1.png",
+        alt: "Dashboard showing monthly support contact volume for the STO product, broken down by reason — billing, returns, booking support and more",
+      },
+      {
+        src: "/Placeholder/bayzat/2.png",
+        alt: "Dashboard drilling into Billing & Invoicing contact reasons, showing outstanding payment clarification as the largest sub-category",
+      },
+      {
+        src: "/Placeholder/bayzat/3.png",
+        alt: "Detailed breakdown of every Billing & Invoicing ticket reason and its volume",
+      },
+      {
+        src: "/Placeholder/bayzat/5.png",
+        alt: "Dashboard breaking down Booking Support contact reasons, with booking confirmation status as the largest category",
+      },
+    ],
+    research:
+      "Six months of CX data revealed that post-booking confusion was concentrated in a small number of experience gaps.",
+    // Shown after the research images — the highlighted phrase uses the same
+    // gold serif-italic treatment as the hero's name on Home.
+    researchClosing: {
+      before: "These three areas alone ",
+      highlight: "generated ~62%",
+      after: " of total CX demand, highlighting a clear, high-leverage opportunity for intervention.",
+    },
+    businessImpactHeadline: "$2.3M+ trapped in outstanding add-on charges",
+    businessImpactImage: {
+      src: "/Placeholder/bayzat/4.png",
+      alt: "Spreadsheet of pending vs. received add-on charge amounts by month and type — damage, mileage, fuel, insurance and traffic — showing over $2M pending in several months",
+    },
+    businessImpactClosing:
+      "Low payment realization meant the majority of post-booking charges remained unpaid or delayed, turning billing confusion into a recurring revenue-recovery problem.",
+    businessImpactHeadline2: "$30K+/month spent explaining billing issues",
+    businessImpactClosing2:
+      "Repetitive billing clarification consumed 2,000+ CX and Ops hours every month — roughly $30K+ in avoidable operating cost.",
+    // Prioritization section — the criteria used to rank which problem areas
+    // to tackle first, shown as a bullet list beside the radar chart below.
+    prioritizationLead:
+      "Billing & Invoicing offered the strongest combination of customer pain, commercial impact, and product solvability.",
+    prioritizationIntro:
+      "I prioritized opportunities based on customer impact, business impact, root-cause clarity, and product feasibility.",
+    prioritizationEvaluation: {
+      label: "Evaluation criteria",
+      theme: "grey",
+      points: [
+        "How often it drove support contacts",
+        "Its impact on revenue",
+        "How clearly we understood the root cause",
+        "Whether it could be solved through product",
+      ],
+    },
+    // Radar/spider chart plotting the three problem areas against the
+    // criteria above — the original research artifact
+    // (Framework-1.svg), recoloured to the site's palette as
+    // Framework-1-brand.svg (same geometry, just swapped hex values).
+    prioritizationRadarImage: {
+      src: "/Placeholder/bayzat/Invygo/Billing/Framework-1-brand.svg",
+      alt: "Radar chart scoring Returns & Force Collection, Billing & Invoicing, and Booking Support against Business Impact, Technical Effort & Feasibility, and Contribution %",
+    },
+    // Third column, right of the radar chart — why Billing & Invoicing came
+    // out on top, in the same order as the evaluation criteria above.
+    prioritizationResult: {
+      label: "Billing & Invoicing:",
+      theme: "lime",
+      points: [
+        "It drove a large share of support tickets",
+        "It directly affected revenue collection",
+        "The issues followed repeatable patterns",
+        "The solution could be built and scaled within the product",
+      ],
+    },
+    // User Research section — follows Prioritization. Laid out as a heading +
+    // intro, then two cards side by side (questions | what this caused + root
+    // cause), then a full-width design-insight card. See `.cs-ur-*` in
+    // CaseStudy.css.
+    userResearch: {
+      heading: "We spoke with customers to understand why billing issues kept turning into disputes.",
+      intro:
+        "The data showed us where the problem was. Customer conversations helped us understand why it was happening.",
+      questionsTitle: "Four questions kept coming up",
+      questions: [
+        {
+          heading: "What happened?",
+          body: "Users struggled to understand what event triggered the charge.",
+        },
+        {
+          heading: "Why was I charged?",
+          body: "The reason a fee applied was often unclear.",
+        },
+        {
+          heading: "How was the amount calculated?",
+          body: "Users lacked visibility into how the final amount was derived.",
+        },
+        {
+          heading: "What evidence supports it?",
+          body: "Supporting proof often surfaced too late or only after contacting CX.",
+        },
+      ],
+      causedLabel: "What this caused",
+      caused: [
+        { text: "Users disputed charges before they understood them.", color: "var(--accent-gold)" },
+        { text: "CX became the explanation layer for the product.", color: "#5b86ff" },
+        { text: "Collection teams often became the first point where the full charge was explained.", color: "#4ade80" },
+      ],
+      rootCauseLabel: "Root cause",
+      rootCause: "The problem wasn’t the amount. It was the lack of clarity before payment.",
+      insightLabel: "Design insight",
+      insight: "The system was designed to collect payments, not to build understanding.",
+    },
+    // "How might we" section — one big centered statement after User Research.
+    howMightWe: "Enable understanding before payment at scale, without CX dependency.",
+    // Solution section — follows "How might we": a large heading + body copy.
+    solutionSection: {
+      heading: "Designing for understanding before payment",
+      body: [
+        "The legacy invoice showed what users owed, but gave little context around why the charge existed or what evidence supported it.",
+        "The redesign turned the invoice into a structured explanation combining charge context, violation details, proof, payment breakdown, and action in one place.",
+      ],
+      // Before/after slider shown under the body copy (see <BeforeAfter>).
+      // Both screens are full iPhone 14 Pro mockups (bezel included). Text in
+      // {curly braces} in the notes renders in the lime serif-italic
+      // highlight style.
+      compare: {
+        before: {
+          src: "/Placeholder/invygo/invygo-before-1.svg",
+          alt: "Legacy invoice details screen, before the redesign",
+        },
+        after: {
+          src: "/Placeholder/invygo/invygo-after-1.svg",
+          alt: "Redesigned traffic fine screen with violation details, proof and payment breakdown",
+        },
+        beforeNotes: [
+          "Amount and invoice details only",
+          "Limited explanation of the charge",
+          "No supporting evidence",
+          "Users relied on CX for clarification",
+        ],
+        afterNotes: [
+          "Explains what happened and why",
+          "Surfaces date, location, and violation details",
+          "Shows proof directly in the flow",
+          "Breaks down the total before payment",
+          "Gives users a clear next action",
+        ],
+      },
+      // Scroll-driven walkthrough shown below the slider: one sticky phone on
+      // the left cycles through each step's screen as its copy (on the right)
+      // scrolls into the middle of the viewport. `image` is optional ({ src,
+      // alt }); steps without one show a phone-shaped placeholder.
+      features: [
+        {
+          number: "01",
+          label: "Context before payment",
+          heading: "Explain before asking",
+          body: [
+            "Before showing the amount due, we clearly notify users what happened and direct them to the relevant details.",
+          ],
+          image: {
+            src: "/Placeholder/invygo/notification.svg",
+            alt: "Invygo notification screen explaining a new traffic fine and linking to its details",
+          },
+        },
+        {
+          number: "02",
+          label: "My Booking screen",
+          heading: "Bring billing into the booking journey",
+          body: [
+            "Users can see outstanding dues in context, alongside their booking and ownership progress.",
+          ],
+          image: {
+            src: "/Placeholder/invygo/home.svg",
+            alt: "My Booking screen showing outstanding dues alongside booking and ownership progress",
+          },
+        },
+        {
+          number: "03",
+          label: "Billing & Invoices Hub",
+          heading: "Make charges easy to find",
+          body: [
+            "A central billing hub helps users scan unpaid, upcoming, and paid invoices without searching across the app.",
+          ],
+          image: {
+            src: "/Placeholder/invygo/billing.svg",
+            alt: "Billing and invoices hub listing unpaid, upcoming and paid invoices",
+          },
+        },
+        {
+          number: "04",
+          label: "Charge detail screen",
+          heading: "From amount to understanding",
+          body: [
+            "Each charge now includes the reason, date, location, evidence, and payment breakdown in one place.",
+          ],
+          image: {
+            src: "/Placeholder/invygo/fine.svg",
+            alt: "Charge detail screen with violation details, proof and payment breakdown",
+          },
+        },
+        {
+          number: "05",
+          label: "Proof of violation screen",
+          heading: "Make evidence visible",
+          body: [
+            "Users can review supporting proof directly in the flow, reducing doubt and unnecessary support contact.",
+          ],
+          image: {
+            src: "/Placeholder/invygo/evidence.svg",
+            alt: "Proof of violation screen showing supporting evidence",
+          },
+        },
+        {
+          number: "06",
+          label: "Support entry screen",
+          heading: "Offer the right next step",
+          body: [
+            "Instead of immediately routing users to CX, we give them a clearer path to either get help or dispute the charge.",
+          ],
+          image: {
+            src: "/Placeholder/invygo/get%20help.svg",
+            alt: "Support entry screen offering to get help or dispute the charge",
+          },
+        },
+        {
+          number: "07",
+          label: "File dispute screen",
+          heading: "Guide the dispute",
+          body: [
+            "Users can explain the issue through a structured flow, making disputes easier to submit and faster to resolve.",
+          ],
+          image: {
+            src: "/Placeholder/invygo/raise%20dispute.svg",
+            alt: "File dispute screen with a structured flow for explaining the issue",
+          },
+        },
+        {
+          number: "08",
+          label: "Payment success screen",
+          heading: "Close the loop clearly",
+          body: [
+            "A clear confirmation screen reassures users that payment is complete and keeps the invoice accessible afterward.",
+          ],
+          image: {
+            src: "/Placeholder/invygo/Payment%20done.svg",
+            alt: "Payment success screen confirming the payment is complete",
+          },
+        },
+      ],
+    },
+    // Impact section — follows Solution. Rendered in the same merged-cell grid
+    // style as the Home page's "intentions" block (see <ImpactGrid>): up to 4
+    // metrics in a 2x2 between a bare row above and below, with body copy above it.
+    impactSection: {
+      body: "The redesign reduced support dependency, improved payment recovery, and helped users resolve billing issues with far less manual intervention.",
+      metrics: [
+        {
+          label: "Receivables recovered",
+          value: "42% of $2.3M",
+          description:
+            "Recovered 42% of previously outstanding add-on charges by giving users clearer context, evidence, and payment options.",
+        },
+        {
+          label: "Billing support",
+          value: "~23% reduction",
+          description:
+            "Fewer users needed to contact CX because they could understand charges and next steps directly in the product.",
+        },
+        {
+          label: "CX & Ops effort",
+          value: "2,000+ hours/month freed",
+          description:
+            "Teams spent less time repeating billing explanations and more time handling higher-value exceptions.",
+        },
+        {
+          label: "Collection rate",
+          value: "23% \u2192 51%",
+          description:
+            "Add-on collection improved significantly, contributing $52K+ in additional monthly collections over the latest three months.",
+        },
+      ],
+    },
   },
   {
     id: "case-study-three",

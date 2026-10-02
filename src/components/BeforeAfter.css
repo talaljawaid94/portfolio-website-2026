@@ -1,0 +1,255 @@
+/* Before/after phone slider. The layout is driven by a container query on
+   .ba-wrap (not the viewport), since the case study's content column is
+   narrower than the page once the sticky TOC is showing. */
+.ba-wrap {
+  container-type: inline-size;
+  margin-top: 40px;
+}
+
+.ba {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 332px) 1fr;
+  align-items: center;
+  column-gap: 34px;
+}
+
+.ba-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+.ba.go .ba-center {
+  opacity: 1;
+  transform: none;
+}
+
+.ba-frame {
+  position: relative;
+  width: 100%;
+  max-width: 332px;
+  margin-top: 44px; /* room for the labels above the phone */
+  aspect-ratio: 332 / 676; /* iPhone 14 Pro mockup, bezel included */
+  /* the mockups carry their own device frame, so no border/radius here; the
+     glow follows the phone's silhouette (including the clipped half) */
+  filter: drop-shadow(0 28px 36px rgba(47, 92, 255, 0.28));
+  cursor: ew-resize;
+  user-select: none;
+  touch-action: pan-y;
+}
+.ba-frame:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 4px;
+}
+
+.ba-img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  /* trims the 1px black artboard outline baked into the exported mockups */
+  clip-path: inset(1px);
+}
+
+/* the live clip and handle position are set inline from the slider state */
+.ba-after {
+  clip-path: inset(1px 1px 1px 50%);
+}
+
+/* handle uses the same lime as the CTA hover, with dark glyph on top */
+.ba-handle {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 50%;
+  width: 3px;
+  background: var(--accent-gold);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.ba-handle::after {
+  content: "\21C6";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  color: var(--bg);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+.ba-lbl {
+  position: absolute;
+  top: -38px;
+  padding: 5px 10px;
+  border: 1px solid #1b2f66;
+  border-radius: 20px;
+  background: rgba(1, 5, 16, 0.78);
+  color: var(--text-white);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.ba-lbl-l {
+  left: 0;
+}
+.ba-lbl-r {
+  right: 0;
+}
+
+/* .ba (parent) qualifier beats the generic `.cs-block p` rule, which
+   otherwise wins on specificity since it also matches this <p> */
+.ba .ba-hint {
+  margin: 14px 0 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+}
+
+.ba-notes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+}
+
+.ba-notes li {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  font-size: clamp(0.85rem, 1.1vw, 0.98rem);
+  line-height: 1.5;
+  color: var(--text-dim);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.55s, transform 0.55s;
+}
+.ba.go .ba-notes li {
+  opacity: 1;
+  transform: none;
+}
+.ba-notes li:nth-child(1) {
+  transition-delay: 0.15s;
+}
+.ba-notes li:nth-child(2) {
+  transition-delay: 0.28s;
+}
+.ba-notes li:nth-child(3) {
+  transition-delay: 0.41s;
+}
+.ba-notes li:nth-child(4) {
+  transition-delay: 0.54s;
+}
+.ba-notes li:nth-child(5) {
+  transition-delay: 0.67s;
+}
+
+.ba-note-text {
+  flex: 1 1 0;
+}
+
+.ba-note-line {
+  flex: 0 0 26px;
+  height: 1px;
+  background: #1b2f66;
+  transform: scaleX(0);
+  transition: transform 0.5s 0.2s;
+}
+.ba.go .ba-note-line {
+  transform: scaleX(1);
+}
+
+.ba-note-bar {
+  flex: 0 0 auto;
+  align-self: stretch; /* grows with a multi-line note */
+  width: 4px;
+  min-height: 38px;
+  border-radius: 3px;
+}
+
+/* italic serif reads small next to the sans body text */
+.ba-note-text .cs-highlight-gold {
+  font-size: 1.1em;
+}
+
+.ba-notes--l {
+  text-align: right;
+}
+.ba-notes--l .ba-note-line {
+  transform-origin: left center;
+}
+.ba-notes--l .ba-note-bar {
+  background: #6b7390; /* legacy — muted */
+}
+
+.ba-notes--r {
+  text-align: left;
+}
+.ba-notes--r .ba-note-line {
+  transform-origin: right center;
+}
+.ba-notes--r .ba-note-bar {
+  background: var(--accent-gold); /* redesign — lime */
+}
+
+/* narrow container: phone first, then both note lists stacked below */
+@container (max-width: 780px) {
+  .ba {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    row-gap: 26px;
+  }
+  .ba-center {
+    order: 1;
+  }
+  .ba-notes--l {
+    order: 2;
+  }
+  .ba-notes--r {
+    order: 3;
+  }
+  .ba-notes {
+    width: 100%;
+    max-width: 430px;
+    gap: 16px;
+  }
+  .ba-notes--l,
+  .ba-notes--r {
+    text-align: left;
+  }
+  .ba-notes--l li {
+    flex-direction: row-reverse;
+  }
+  .ba-note-bar {
+    min-height: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ba-center,
+  .ba-notes li,
+  .ba-note-line {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
