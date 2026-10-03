@@ -3,10 +3,8 @@ import Logo from "./Logo";
 import { profile, nav, mobileNav } from "../data/content";
 import "./Nav.css";
 
-// The hamburger only has anything worth opening once the inner-page links
-// (Archives/About/Contact) are back — see SHOW_INNER_PAGES in content.js.
-// mobileNav is just [Home] while they're hidden, so hide the button too
-// rather than open to a menu with a single link.
+// The hamburger only has something worth opening once the menu holds more
+// than just Home — see mobileNav in content.js.
 const showMenuButton = mobileNav.length > 1;
 
 export default function Nav({ onOpenMenu }) {
@@ -22,6 +20,7 @@ export default function Nav({ onOpenMenu }) {
             <NavLink
               key={item.label}
               to={item.to}
+              end={item.to === "/"} // Home is only "active" on the home page itself
               className={({ isActive }) => `nav-link ${isActive ? "is-active" : ""}`}
             >
               {item.label}
@@ -44,7 +43,7 @@ export default function Nav({ onOpenMenu }) {
 
         {showMenuButton && (
           <button className="nav-menu-btn" onClick={onOpenMenu} aria-label="Open menu">
-            ✱
+            <span className="nav-menu-icon" />
           </button>
         )}
       </div>

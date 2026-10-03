@@ -46,10 +46,13 @@
   letter-spacing: 0.1em;
 }
 
+/* /public/icons/close.svg, recoloured white via a mask */
 .mobile-menu-close-box {
-  width: 10px;
-  height: 10px;
-  background: var(--text-dim);
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  -webkit-mask: url("/icons/close.svg") center / contain no-repeat;
+  mask: url("/icons/close.svg") center / contain no-repeat;
 }
 
 .mobile-menu-links {
