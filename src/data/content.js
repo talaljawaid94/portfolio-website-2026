@@ -798,11 +798,17 @@ export const archives = {
       },
     },
     {
-      name: "AI Experiment 02",
+      name: "Katana — A Scroll-Driven Three.js Experience",
       year: "2026",
-      title: "Placeholder: a short line about the second AI experiment.",
+      url: "https://katana-claude-three-js-website.vercel.app/",
+      title:
+        "Katana is an interactive Three.js web experience exploring the anatomy and craftsmanship of the Japanese sword. I designed a scroll-driven journey where the katana unsheathes, rotates and reveals its individual components through 3D animation. The experience combines cinematic motion, interactive storytelling and Japanese-inspired visual details to turn a simple informational website into an immersive digital experience.",
       color: "#1B1D1F",
-      gradient: "linear-gradient(160deg, #0a2a20 0%, #1f7a5a 55%, #f0c14b 100%)",
+      images: {
+        phone: "/Placeholder/AI Experiment/Katana/Mobile.png",
+        tablet: "/Placeholder/AI Experiment/Katana/Tablet.png",
+        desktop: "/Placeholder/AI Experiment/Katana/Website.png",
+      },
     },
   ],
 };
