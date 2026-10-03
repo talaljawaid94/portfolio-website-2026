@@ -775,35 +775,57 @@ export const photoStrip = [
 ];
 
 export const archives = {
-  eyebrow: "PROJECTS AND EXPLORATIONS WORTH MENTIONING",
+  eyebrow: "Exploring AI through practical product experiments.",
   spanning: "2019 – Present",
   intro: "Things I made when no one was watching.",
+  // Cards use the same markup/styles as the Home case study cards. `url` is
+  // optional: with one the card links out, without it the card is static.
   projects: [
-    { title: "Side Project One", tag: "AI TOOL", date: "March 2026", color: "#E9FA7B" },
-    { title: "Side Project Two", tag: "WEB APP", date: "2025", color: "#E9FA7B" },
-    { title: "Side Project Three", tag: "MOBILE APP", date: "2025", color: "#E9FA7B" },
-    { title: "Side Project Four", tag: "MICRO INTERACTION", date: "July 2022", color: "#E9FA7B" },
+    {
+      name: "Papyr",
+      year: "2026",
+      url: "https://papyr-eta.vercel.app/",
+      title: "Papyr was built as a small experiment to explore how simple PDF editing can be when unnecessary friction is removed.",
+      // optional second paragraph under the title
+      description:
+        "Edit your document, add a signature, and download it, all in one place, without creating an account, hitting unnecessary limits, or running into a paywall at the end.",
+      color: "#1B1D1F",
+      // one crop per breakpoint, same scheme as the case study banners
+      images: {
+        phone: "/Placeholder/AI Experiment/Papyr/Mobile.png",
+        tablet: "/Placeholder/AI Experiment/Papyr/Tablet.png",
+        desktop: "/Placeholder/AI Experiment/Papyr/Website.png",
+      },
+    },
+    {
+      name: "AI Experiment 02",
+      year: "2026",
+      title: "Placeholder: a short line about the second AI experiment.",
+      color: "#1B1D1F",
+      gradient: "linear-gradient(160deg, #0a2a20 0%, #1f7a5a 55%, #f0c14b 100%)",
+    },
   ],
 };
 
-// Archives, About and Contact are still fully built (routes, pages, the
-// Contact section on Home) — this just hides their nav links while those
-// inner pages get finished. Flip back to `true` to bring them back into the
-// nav with no other changes needed.
+// About and Contact are still fully built (routes, pages, the Contact section
+// on Home) — this just hides their nav links while those inner pages get
+// finished. Flip SHOW_INNER_PAGES back to `true` to bring them back into the
+// nav with no other changes needed. Home and AI Experiments are always shown.
 const SHOW_INNER_PAGES = false;
 
-const allNavLinks = [
-  { label: "Archives", to: "/archives" },
+const aiExperimentsLink = { label: "AI Experiments", to: "/archives" };
+const innerNavLinks = [
   { label: "About", to: "/about" },
   { label: "Contact", to: "/#contact" },
 ];
-
-const allMobileNavLinks = [
-  { label: "Home", to: "/" },
-  { label: "Archives", to: "/archives" },
+const innerMobileNavLinks = [
   { label: "About Me", to: "/about" },
   { label: "Let's Connect", to: "/#contact" },
 ];
 
-export const nav = SHOW_INNER_PAGES ? allNavLinks : [];
-export const mobileNav = SHOW_INNER_PAGES ? allMobileNavLinks : [allMobileNavLinks[0]];
+export const nav = [{ label: "Home", to: "/" }, aiExperimentsLink, ...(SHOW_INNER_PAGES ? innerNavLinks : [])];
+export const mobileNav = [
+  { label: "Home", to: "/" },
+  aiExperimentsLink,
+  ...(SHOW_INNER_PAGES ? innerMobileNavLinks : []),
+];
