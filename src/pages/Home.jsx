@@ -5,6 +5,7 @@ import Marquee from "../components/Marquee";
 import Logo from "../components/Logo";
 import Testimonials from "../components/Testimonials";
 import CaseStudyLink from "../components/CaseStudyLink";
+import useBannerBreakpoint from "../hooks/useBannerBreakpoint";
 import {
   heroContent,
   homeStats,
@@ -79,8 +80,10 @@ export default function Home() {
 
   const pillRef = useRef(null);
   const [pillVisible, setPillVisible] = useState(false);
+  const [pillLabel, setPillLabel] = useState("View Case Study");
+  const bannerKey = useBannerBreakpoint();
 
-  // hide the site's ring cursor while the "View Case Study" pill is showing
+  // hide the site's ring cursor while the cursor pill is showing
   useEffect(() => {
     document.body.classList.toggle("work-pill-active", pillVisible);
     return () => document.body.classList.remove("work-pill-active");
@@ -179,16 +182,19 @@ export default function Home() {
           }}
         >
           <div ref={pillRef} className={`work-cursor-pill ${pillVisible ? "visible" : ""}`}>
-            View Case Study
+            {pillLabel}
           </div>
 
           {visibleCaseStudies.map((cs) => (
             <CaseStudyLink
               study={cs}
               key={cs.id}
-              className="case-study-card"
+              className={`case-study-card ${cs.underNda ? "case-study-card--nda" : ""}`}
               style={{ "--work-color": cs.color, background: cs.color }}
-              onMouseEnter={() => setPillVisible(true)}
+              onMouseEnter={() => {
+                setPillLabel(cs.underNda ? "Under NDA" : "View Case Study");
+                setPillVisible(true);
+              }}
               onMouseLeave={() => setPillVisible(false)}
             >
               {cs.locked && (
@@ -197,7 +203,9 @@ export default function Home() {
                 </span>
               )}
               <div
-                className={`case-study-image ${cs.images ? "case-study-image--banner" : ""}`}
+                className={`case-study-image ${cs.images ? "case-study-image--banner" : ""} ${
+                  cs.videos ? "case-study-image--video" : ""
+                }`}
                 style={
                   cs.images
                     ? // One purpose-cropped image per breakpoint (see the media
@@ -208,9 +216,23 @@ export default function Home() {
                         "--banner-tablet": `url(${cs.images.tablet})`,
                         "--banner-desktop": `url(${cs.images.desktop})`,
                       }
-                    : { background: cs.gradient }
+                    : { background: cs.gradient, "--video-bg": cs.videoBg }
                 }
               >
+                {cs.videos && (
+                  <video
+                    // key remounts the element when the breakpoint swaps the source
+                    key={bannerKey}
+                    className="case-study-video"
+                    src={cs.videos[bannerKey]}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    aria-hidden="true"
+                  />
+                )}
                 {cs.headline && <p className="case-study-headline serif-italic">{cs.headline}</p>}
               </div>
               <div className="case-study-header">

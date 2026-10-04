@@ -198,6 +198,50 @@ export const caseStudies = [
       "A closing paragraph tying the problem, your approach, and the outcome together.",
   },
   {
+    id: "case-study-five",
+    company: "DXWand",
+    companyInitial: "D",
+    tag: "CLIENT PROJECT",
+    title:
+      "A no-code platform where teams build, test and ship AI customer-support agents on an open canvas, designed end to end.",
+    year: "2025",
+    locked: true,
+    // Under NDA: the Home card isn't a link (nothing opens) and its hover pill
+    // reads "Under NDA" instead of "View Case Study".
+    underNda: true,
+    password: "letmein", // cosmetic gate, same as the others; set null to open it
+    color: "#1B1D1F",
+    gradient: "linear-gradient(160deg, #0d1a4a 0%, #2f5cff 55%, #e9fa7b 100%)",
+    // Home-page card media — a looping video per breakpoint instead of `images`
+    // (the gradient above shows until the video loads). Sizes match each crop.
+    // flat colour the videos' own backgrounds end in — fills the sides where a
+    // video is shown whole inside the card instead of cropped (tablet)
+    videoBg: "#f4f6fa",
+    videos: {
+      phone: "/Placeholder/DXWand/Animation/protoverse-test-run-mobile-553x530.mp4",
+      tablet: "/Placeholder/DXWand/Animation/protoverse-test-run-tablet-516x420.mp4",
+      desktop: "/Placeholder/DXWand/Animation/protoverse-test-run-website-1296x680.mp4",
+    },
+
+    meta: {
+      role: "Product Designer",
+      team: "You + 1 engineer",
+      duration: "2 months",
+      hideLiveProject: true,
+    },
+    contributions: ["Product Design", "Design System", "Prototyping"],
+
+    overview:
+      "A short summary of the problem, who the product was for, and the impact you had.",
+    challenge: { intro: "Describe the friction or business problem you were solving." },
+    solutions: [
+      { heading: "The Process", body: "Walk through discovery, iterations, and key decisions." },
+      { heading: "The Result", body: "Share the shipped outcome and the metrics that moved." },
+    ],
+    outcomes: ["A measurable result worth highlighting."],
+    conclusion: "A closing paragraph tying it all together.",
+  },
+  {
     id: "case-study-two",
     company: "INVYGO",
     companyInitial: "I",

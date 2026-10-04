@@ -205,6 +205,26 @@
   padding: 28px;
 }
 
+/* Under-NDA cards (not clickable) get a light white wash plus a blur over the
+   image on hover; the clickable cards don't. */
+.case-study-card--nda .case-study-image {
+  position: relative;
+}
+.case-study-card--nda .case-study-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease-out-expo);
+}
+.case-study-card--nda:hover .case-study-image::after {
+  opacity: 1;
+}
+
 /* Real banner image on a card (via cs.images): one crop per breakpoint,
    each designed for that breakpoint's own box aspect —
      phone   (<768px):   ~0.9:1 (box is close to square)
@@ -226,6 +246,37 @@
   .case-study-image--banner {
     background-image: var(--banner-desktop);
   }
+}
+
+/* Looping video on a card (via cs.videos). The box keeps the same size as
+   every other card's image (the 340px min-height on .case-study-image) and the
+   video fills it with `cover`, so on wide screens the top and bottom of the
+   video are cropped (the box is wider than the video). */
+.case-study-image--video {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+/* Tablet: the video is nearly square (516x420) but the card's image box is
+   wide and short, so `cover` would zoom in and cut off the artwork. Show the
+   whole video at the card's normal height instead, and fill the sides with the
+   video's own background colour (--video-bg, set from cs.videoBg). */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .case-study-image--video {
+    background: var(--video-bg, #000) !important; /* beats the inline gradient */
+  }
+  .case-study-image--video .case-study-video {
+    object-fit: contain;
+  }
+}
+.case-study-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
 }
 
 .case-study-headline {
