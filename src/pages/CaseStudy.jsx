@@ -88,6 +88,7 @@ export default function CaseStudy() {
         <p className="case-study-gate-sub">Enter the password to view</p>
         <form onSubmit={submit} className="case-study-gate-form">
           <input
+            data-clarity-mask="true" // never record what's typed into the password box
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="May the password be with you."
