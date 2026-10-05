@@ -8,6 +8,11 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+
+# Local env files (the Clarity ID etc. live in Vercel; see .env.example)
+.env
+.env.*
+!.env.example
 dist
 dist-ssr
 *.local
