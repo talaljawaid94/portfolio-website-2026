@@ -142,6 +142,7 @@ export default function Home() {
             {visibleCaseStudies[0] && (
               <CaseStudyLink
                 study={visibleCaseStudies[0]}
+                source="Home teaser"
                 className="hero-block case-study-card-mini"
                 style={blockStyle(HERO_BLOCKS.teaser)}
               >
@@ -189,6 +190,7 @@ export default function Home() {
             <CaseStudyLink
               study={cs}
               key={cs.id}
+              source="Home card"
               className={`case-study-card ${cs.underNda ? "case-study-card--nda" : ""}`}
               style={{ "--work-color": cs.color, background: cs.color }}
               onMouseEnter={() => {
