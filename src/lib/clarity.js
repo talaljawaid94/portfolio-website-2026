@@ -21,3 +21,10 @@ export function initClarity() {
   script.src = `https://www.clarity.ms/tag/${id}`;
   document.head.appendChild(script);
 }
+
+// Records a named custom event in Clarity (Dashboard → Smart events / Filters →
+// Custom events), e.g. which case study card was clicked and from where. A
+// no-op until Clarity has loaded (dev, or a build without a project ID).
+export function trackEvent(name) {
+  if (typeof window.clarity === "function") window.clarity("event", name);
+}

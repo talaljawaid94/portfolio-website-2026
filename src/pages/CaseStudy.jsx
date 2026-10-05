@@ -460,7 +460,7 @@ function CaseStudyBody({ study }) {
           grid, so it scrolls away once the last section is done */}
       <div className="cs-next-cards">
         {otherStudies.map((cs) => (
-          <CaseStudyLink key={cs.id} study={cs} className="cs-next-card">
+          <CaseStudyLink key={cs.id} study={cs} source="End card" className="cs-next-card">
             <div className="cs-next-card-body">
               <div>
                 <span className="eyebrow cs-next-meta">

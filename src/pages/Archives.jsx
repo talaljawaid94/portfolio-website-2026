@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { archives } from "../data/content";
+import { trackEvent } from "../lib/clarity";
 import "./Home.css";
 import "./CaseStudy.css";
 import "./Archives.css";
@@ -60,6 +61,7 @@ function ArchiveCard({ project, onHover }) {
     <Tag
       className={`case-study-card ${project.url ? "" : "case-study-card--static"}`}
       style={{ "--work-color": project.color, background: project.color }}
+      onClick={() => trackEvent(`Experiment card: ${project.name.split(" — ")[0]}`)}
       onMouseEnter={project.url ? () => onHover(true) : undefined}
       onMouseLeave={project.url ? () => onHover(false) : undefined}
       {...linkProps}

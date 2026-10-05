@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import Logo from "./Logo";
+import { trackEvent } from "../lib/clarity";
 import { profile, nav, mobileNav } from "../data/content";
 import "./Nav.css";
 
@@ -20,6 +21,7 @@ export default function Nav({ onOpenMenu }) {
             <NavLink
               key={item.label}
               to={item.to}
+              onClick={() => trackEvent(`Nav: ${item.label}`)}
               end={item.to === "/"} // Home is only "active" on the home page itself
               className={({ isActive }) => `nav-link ${isActive ? "is-active" : ""}`}
             >
