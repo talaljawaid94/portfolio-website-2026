@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Layout from "./components/Layout";
 import CursorDot from "./components/CursorDot";
 import Home from "./pages/Home";
@@ -28,7 +28,9 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/archives" element={<Archives />} />
+          <Route path="/ai-experiments" element={<Archives />} />
+          {/* the page used to live at /archives */}
+          <Route path="/archives" element={<Navigate to="/ai-experiments" replace />} />
           <Route path="/case-study/:slug" element={<CaseStudy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

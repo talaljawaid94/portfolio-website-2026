@@ -1,6 +1,6 @@
 # Portfolio Website
 
-A React + Vite single-page portfolio (product design case studies, about, archives).
+A React + Vite single-page portfolio (product design case studies, about, AI experiments).
 
 ## Editing content
 
@@ -35,7 +35,7 @@ npm run preview   # serve the dist/ build locally to sanity-check it
 
 ## Deploying
 
-This is a client-side-routed app (react-router: `/`, `/about`, `/archives`,
+This is a client-side-routed app (react-router: `/`, `/about`, `/ai-experiments`,
 `/case-study/:slug`), so whatever host you use must fall back to
 `index.html` for unknown paths — otherwise a direct link to `/about` or a
 page refresh on it will 404. The fallback config for the common options is
