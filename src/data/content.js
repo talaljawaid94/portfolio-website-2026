@@ -863,7 +863,7 @@ export const archives = {
 // nav with no other changes needed. Home and AI Experiments are always shown.
 const SHOW_INNER_PAGES = false;
 
-const aiExperimentsLink = { label: "AI Experiments", to: "/archives" };
+const aiExperimentsLink = { label: "AI Experiments", to: "/ai-experiments" };
 const innerNavLinks = [
   { label: "About", to: "/about" },
   { label: "Contact", to: "/#contact" },
