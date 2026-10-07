@@ -240,7 +240,7 @@ export default function Home() {
               <div className="case-study-header">
                 <div className="case-study-header-left">
                   <span className="case-study-block" />
-                  <h3 className="case-study-name">{cs.company}</h3>
+                  <h3 className="case-study-name">{cs.cardLabel ?? cs.company}</h3>
                 </div>
                 <span className="case-study-year">→ {cs.year} ←</span>
               </div>

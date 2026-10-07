@@ -201,6 +201,9 @@ export const caseStudies = [
     id: "case-study-five",
     company: "DXWand",
     companyInitial: "D",
+    // longer label shown on the Home card (the short `company` name is still
+    // used everywhere else: the password page, end-of-page cards, analytics)
+    cardLabel: "DXWAND - Builds enterprise AI products",
     tag: "CLIENT PROJECT",
     title:
       "A no-code platform where teams build, test and ship AI customer-support agents on an open canvas, designed end to end.",
@@ -245,6 +248,8 @@ export const caseStudies = [
     id: "case-study-two",
     company: "INVYGO",
     companyInitial: "I",
+    // longer label shown on the Home card only
+    cardLabel: "INVYGO - Flexible car ownership, without the traditional complexity.",
     // white-fill logo — shown on the accent-colored badge in the case study header
     logo: "/Logos/invygo.svg",
     // real visible bounds of the artwork inside its viewBox (same technique as
@@ -628,6 +633,8 @@ export const caseStudies = [
     id: "case-study-three",
     company: "BAYZAT",
     companyInitial: "B",
+    // longer label shown on the Home card only
+    cardLabel: "BAYZAT - HR, payroll and benefits built for the GCC.",
     tag: "CLIENT PROJECT",
     title: "From churn risk to conversion driver, preventing AED 500K in churn at Bayzat",
     year: "2023",
@@ -667,6 +674,8 @@ export const caseStudies = [
     id: "case-study-four",
     company: "Careem",
     companyInitial: "C",
+    // longer label shown on the Home card only
+    cardLabel: "CAREEM - Middle East’s Everything App for mobility, delivery and payments.",
     tag: "CLIENT PROJECT",
     title: "Redesigning Incentives to Increase Captain Retention by 17.3% and Weekly Earnings by 24%",
     year: "2021",
