@@ -61,7 +61,7 @@ function ArchiveCard({ project, onHover }) {
     <Tag
       className={`case-study-card ${project.url ? "" : "case-study-card--static"}`}
       style={{ "--work-color": project.color, background: project.color }}
-      onClick={() => trackEvent(`Experiment card: ${project.name.split(" — ")[0]}`)}
+      onClick={() => trackEvent(`Experiment card: ${project.name.split(/\s[—-]\s/)[0]}`)}
       onMouseEnter={project.url ? () => onHover(true) : undefined}
       onMouseLeave={project.url ? () => onHover(false) : undefined}
       {...linkProps}

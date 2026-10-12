@@ -863,6 +863,19 @@ export const archives = {
         desktop: "/Placeholder/AI Experiment/Katana/Website.png",
       },
     },
+    {
+      name: "Jungle Survival - Crash. Craft. Survive the night.",
+      year: "2026",
+      url: "https://jungle-survival.vercel.app/",
+      title:
+        "A free browser survival game: your helicopter goes down on an uncharted island, and you have to find water, build fire and survive until help finds you.",
+      color: "#1B1D1F",
+      images: {
+        phone: "/Placeholder/AI Experiment/Jungle Survival/Mobile.jpg",
+        tablet: "/Placeholder/AI Experiment/Jungle Survival/Tablet.jpg",
+        desktop: "/Placeholder/AI Experiment/Jungle Survival/Website.jpg",
+      },
+    },
   ],
 };
 
