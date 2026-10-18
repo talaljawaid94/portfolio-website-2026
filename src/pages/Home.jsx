@@ -221,7 +221,7 @@ export default function Home() {
                     : { background: cs.gradient, "--video-bg": cs.videoBg }
                 }
               >
-                {cs.videos && (
+                {cs.videos && bannerKey && (
                   <video
                     // key remounts the element when the breakpoint swaps the source
                     key={bannerKey}

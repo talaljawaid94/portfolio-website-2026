@@ -15,10 +15,23 @@ const GONE_AT = HIDE_AT + 1400;
 export default function SiteLoader() {
   const [hide, setHide] = useState(false);
   const [greetingIndex, setGreetingIndex] = useState(0);
-  const [gone, setGone] = useState(() => Boolean(sessionStorage.getItem("loader-seen")));
+  // starts "not gone" on the server and on the first client render so they
+  // match; a visitor who already saw the loader this session has it hidden
+  // before first paint by the inline script in index.html (html.loader-seen)
+  // and is switched to "gone" right after mount.
+  const [gone, setGone] = useState(false);
 
   useEffect(() => {
-    if (gone) return;
+    let seen = false;
+    try {
+      seen = Boolean(sessionStorage.getItem("loader-seen"));
+    } catch {
+      // storage unavailable (private mode etc.): just show the loader
+    }
+    if (seen) {
+      setGone(true);
+      return;
+    }
 
     const cycle = setInterval(() => {
       setGreetingIndex((i) => Math.min(i + 1, loaderGreetings.length - 1));
@@ -31,7 +44,11 @@ export default function SiteLoader() {
 
     const goneTimer = setTimeout(() => {
       setGone(true);
-      sessionStorage.setItem("loader-seen", "1");
+      try {
+        sessionStorage.setItem("loader-seen", "1");
+      } catch {
+        // ignore
+      }
     }, GONE_AT);
 
     return () => {
@@ -45,7 +62,7 @@ export default function SiteLoader() {
   if (gone) return null;
 
   return (
-    <div className={`site-loader ${hide ? "hide" : ""}`}>
+    <div className={`site-loader ${hide ? "hide" : ""}`} aria-hidden="true">
       <div className="site-loader-grid">
         {CELLS.map((i) => (
           <span

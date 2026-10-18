@@ -14,11 +14,14 @@ const read = () => {
   return "phone";
 };
 
+// Returns null on the server and on the first client render (so pre-rendered
+// HTML and hydration agree), then the real key once mounted.
 export default function useBannerBreakpoint() {
-  const [key, setKey] = useState(read);
+  const [key, setKey] = useState(null);
   useEffect(() => {
     const lists = [window.matchMedia(TABLET), window.matchMedia(DESKTOP)];
     const update = () => setKey(read());
+    update();
     lists.forEach((l) => l.addEventListener("change", update));
     return () => lists.forEach((l) => l.removeEventListener("change", update));
   }, []);

@@ -1,54 +1,11 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { caseStudies } from "../data/content";
+import { SITE, metaFor } from "../lib/routeMeta";
 
 // Sets the page <title>, description, canonical URL, social-share tags and
-// robots directive for the current route. The site is a single-page app, so
-// without this every URL would share the one title/description in index.html.
-// Google runs JavaScript before indexing, so it sees these per-page values.
-// (Link previews on LinkedIn/WhatsApp/Slack don't run JavaScript — they still
-// get index.html's defaults until pages are pre-rendered at build time.)
-const SITE = "https://talaljawaid.design";
-
-const HOME = {
-  title: "Talal Jawaid | Product Designer in Dubai",
-  description:
-    "Product designer with 8+ years of experience across banking, SaaS, lifestyle and AI. Based in Dubai. Case studies and AI experiments.",
-};
-
-const AI_EXPERIMENTS = {
-  title: "AI Experiments | Talal Jawaid",
-  description:
-    "Practical AI experiments by Talal Jawaid: Papyr, a PDF editor that never sees your files; Katana, a scroll-driven Three.js experience; and Jungle Survival, a browser survival game.",
-};
-
-// A case study page is only worth indexing when it has real, public content:
-// not password-protected / under NDA, not hidden, and not just a placeholder
-// page whose card links out to a Figma prototype instead.
-const isIndexable = (s) => !s.locked && !s.hidden && !s.underNda && !s.useExternalPreview;
-
-function metaFor(pathname) {
-  const path = pathname.replace(/\/+$/, "") || "/";
-  if (path === "/") return { ...HOME, path };
-  if (path === "/ai-experiments") return { ...AI_EXPERIMENTS, path };
-
-  const match = path.match(/^\/case-study\/([^/]+)$/);
-  if (match) {
-    const study = caseStudies.find((s) => s.id === match[1]);
-    if (study && isIndexable(study)) {
-      return {
-        title: study.seo?.title ?? `${study.company} case study | Talal Jawaid`,
-        description: study.seo?.description ?? study.title,
-        path,
-      };
-    }
-  }
-
-  // /about (not linked from the nav yet), password/NDA case studies, the
-  // /archives redirect and the 404 page: keep them out of search results.
-  return { ...HOME, path, noindex: true };
-}
-
+// robots directive for the current route as the visitor navigates. (The same
+// values are also baked into each page's static HTML at build time, see
+// scripts/prerender.mjs; this keeps them correct for in-app navigation.)
 function setTag(selector, create, attr, value) {
   let el = document.head.querySelector(selector);
   if (!el) {
