@@ -5,6 +5,7 @@ import Marquee from "../components/Marquee";
 import Logo from "../components/Logo";
 import Testimonials from "../components/Testimonials";
 import CaseStudyLink from "../components/CaseStudyLink";
+import CardImage from "../components/CardImage";
 import useBannerBreakpoint from "../hooks/useBannerBreakpoint";
 import {
   heroContent,
@@ -186,7 +187,7 @@ export default function Home() {
             {pillLabel}
           </div>
 
-          {visibleCaseStudies.map((cs) => (
+          {visibleCaseStudies.map((cs, i) => (
             <CaseStudyLink
               study={cs}
               key={cs.id}
@@ -208,19 +209,11 @@ export default function Home() {
                 className={`case-study-image ${cs.images ? "case-study-image--banner" : ""} ${
                   cs.videos ? "case-study-image--video" : ""
                 }`}
-                style={
-                  cs.images
-                    ? // One purpose-cropped image per breakpoint (see the media
-                      // queries in Home.css), each sized to that breakpoint's own
-                      // box aspect, so `cover` never has to crop out real content.
-                      {
-                        "--banner-phone": `url(${cs.images.phone})`,
-                        "--banner-tablet": `url(${cs.images.tablet})`,
-                        "--banner-desktop": `url(${cs.images.desktop})`,
-                      }
-                    : { background: cs.gradient, "--video-bg": cs.videoBg }
-                }
+                style={cs.images ? undefined : { background: cs.gradient, "--video-bg": cs.videoBg }}
               >
+                {/* One purpose-cropped file per breakpoint (see CardImage.jsx);
+                    the first two cards load eagerly, the rest lazily. */}
+                {cs.images && <CardImage images={cs.images} alt={cs.imageAlt} eager={i < 2} />}
                 {cs.videos && bannerKey && (
                   <video
                     // key remounts the element when the breakpoint swaps the source

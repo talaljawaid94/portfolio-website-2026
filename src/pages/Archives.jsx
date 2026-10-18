@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { archives } from "../data/content";
+import CardImage from "../components/CardImage";
 import { trackEvent } from "../lib/clarity";
 import "./Home.css";
 import "./CaseStudy.css";
@@ -44,8 +45,8 @@ export default function Archives() {
         <div ref={pillRef} className={`work-cursor-pill ${pillVisible ? "visible" : ""}`}>
           View Experiment
         </div>
-        {archives.projects.map((p) => (
-          <ArchiveCard key={p.name} project={p} onHover={setPillVisible} />
+        {archives.projects.map((p, i) => (
+          <ArchiveCard key={p.name} project={p} onHover={setPillVisible} eager={i < 2} />
         ))}
       </div>
     </div>
@@ -54,7 +55,7 @@ export default function Archives() {
 
 // Same card as the Home case study list (.case-study-card and friends in
 // Home.css): colour frame, gradient image, name + year row, title.
-function ArchiveCard({ project, onHover }) {
+function ArchiveCard({ project, onHover, eager }) {
   const Tag = project.url ? "a" : "div";
   const linkProps = project.url ? { href: project.url, target: "_blank", rel: "noreferrer" } : {};
   return (
@@ -68,16 +69,10 @@ function ArchiveCard({ project, onHover }) {
     >
       <div
         className={`case-study-image archive-image ${project.images ? "case-study-image--banner" : ""}`}
-        style={
-          project.images
-            ? {
-                "--banner-phone": `url("${encodeURI(project.images.phone)}")`,
-                "--banner-tablet": `url("${encodeURI(project.images.tablet)}")`,
-                "--banner-desktop": `url("${encodeURI(project.images.desktop)}")`,
-              }
-            : { background: project.gradient }
-        }
-      />
+        style={project.images ? undefined : { background: project.gradient }}
+      >
+        {project.images && <CardImage images={project.images} alt={project.imageAlt} eager={eager} />}
+      </div>
       <div className="case-study-header">
         <div className="case-study-header-left">
           <span className="case-study-block" />

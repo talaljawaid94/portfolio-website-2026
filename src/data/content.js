@@ -273,10 +273,12 @@ export const caseStudies = [
     // above if omitted). See the sizes/aspect ratios each was designed for in
     // the comment above the `images` block in Home.jsx.
     images: {
-      phone: "/Banner/invygo/mobile.png",
-      tablet: "/Banner/invygo/tablet.png",
-      desktop: "/Banner/invygo/website.png",
+      phone: "/Banner/invygo/mobile.webp",
+      tablet: "/Banner/invygo/tablet.webp",
+      desktop: "/Banner/invygo/website.webp",
     },
+    imageAlt:
+      "Invygo app screens over a night-time Dubai skyline: a traffic fine notification, the fine details and a payment confirmation.",
 
     meta: {
       role: "Senior Product Designer",
@@ -652,10 +654,12 @@ export const caseStudies = [
     // Home-page card image — one crop per breakpoint (falls back to `gradient`
     // above if omitted).
     images: {
-      phone: "/Banner/Bayzat/mobile.png",
-      tablet: "/Banner/Bayzat/tablet.png",
-      desktop: "/Banner/Bayzat/website.png",
+      phone: "/Banner/Bayzat/mobile.webp",
+      tablet: "/Banner/Bayzat/tablet.webp",
+      desktop: "/Banner/Bayzat/website.webp",
     },
+    imageAlt:
+      "Bayzat overtime policy setup on a laptop, with an attendance request form on a phone.",
 
     meta: {
       role: "Product Designer",
@@ -693,10 +697,12 @@ export const caseStudies = [
     // Home-page card image — one crop per breakpoint (falls back to `gradient`
     // above if omitted).
     images: {
-      phone: "/Banner/Careem/mobile.png",
-      tablet: "/Banner/Careem/tablet.png",
-      desktop: "/Banner/Careem/website.png",
+      phone: "/Banner/Careem/mobile.webp",
+      tablet: "/Banner/Careem/tablet.webp",
+      desktop: "/Banner/Careem/website.webp",
     },
+    imageAlt:
+      "Careem Captain app incentive screens showing a PKR 6,500 bonus, trip progress and the list of incentives.",
 
     meta: {
       role: "Product Designer",
@@ -851,10 +857,11 @@ export const archives = {
       color: "#1B1D1F",
       // one crop per breakpoint, same scheme as the case study banners
       images: {
-        phone: "/Placeholder/AI Experiment/Papyr/Mobile.png",
-        tablet: "/Placeholder/AI Experiment/Papyr/Tablet.png",
-        desktop: "/Placeholder/AI Experiment/Papyr/Website.png",
+        phone: "/Placeholder/AI Experiment/Papyr/Mobile.webp",
+        tablet: "/Placeholder/AI Experiment/Papyr/Tablet.webp",
+        desktop: "/Placeholder/AI Experiment/Papyr/Website.webp",
       },
+      imageAlt: "Papyr, a PDF editor that never uploads your files, with a rental application being filled in and signed.",
     },
     {
       name: "Katana — A Scroll-Driven Three.js Experience",
@@ -864,10 +871,11 @@ export const archives = {
         "Katana is an interactive Three.js web experience exploring the anatomy and craftsmanship of the Japanese sword. I designed a scroll-driven journey where the katana unsheathes, rotates and reveals its individual components through 3D animation. The experience combines cinematic motion, interactive storytelling and Japanese-inspired visual details to turn a simple informational website into an immersive digital experience.",
       color: "#1B1D1F",
       images: {
-        phone: "/Placeholder/AI Experiment/Katana/Mobile.png",
-        tablet: "/Placeholder/AI Experiment/Katana/Tablet.png",
-        desktop: "/Placeholder/AI Experiment/Katana/Website.png",
+        phone: "/Placeholder/AI Experiment/Katana/Mobile.webp",
+        tablet: "/Placeholder/AI Experiment/Katana/Tablet.webp",
+        desktop: "/Placeholder/AI Experiment/Katana/Website.webp",
       },
+      imageAlt: "Katana, a scroll-driven Three.js website: a Japanese sword beneath paper lanterns and cherry blossom.",
     },
     {
       name: "Jungle Survival - Crash. Craft. Survive the night.",
@@ -881,6 +889,7 @@ export const archives = {
         tablet: "/Placeholder/AI Experiment/Jungle Survival/Tablet.jpg",
         desktop: "/Placeholder/AI Experiment/Jungle Survival/Website.jpg",
       },
+      imageAlt: "Jungle Survival game logo over an aerial view of a jungle island.",
     },
   ],
 };

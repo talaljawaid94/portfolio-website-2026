@@ -225,27 +225,30 @@
   opacity: 1;
 }
 
-/* Real banner image on a card (via cs.images): one crop per breakpoint,
-   each designed for that breakpoint's own box aspect —
+/* Real banner image on a card (via cs.images): one file per breakpoint, picked
+   by <picture> in CardImage.jsx, each cropped for that breakpoint's own box
+   aspect —
      phone   (<768px):   ~0.9:1 (box is close to square)
      tablet  (768–1279): ~2.1:1
      desktop (≥1280px):  ~3.3:1
-   so `cover` never has to crop out real content, unlike a single wide
-   image stretched across every size. */
+   so `cover` never has to crop out real content, unlike a single wide image
+   stretched across every size. The image fills the box (same 340px height as
+   every other card) behind any content. */
 .case-study-image--banner {
-  background-image: var(--banner-phone);
-  background-size: cover;
-  background-position: center;
+  position: relative;
+  overflow: hidden;
 }
-@media (min-width: 768px) {
-  .case-study-image--banner {
-    background-image: var(--banner-tablet);
-  }
+.case-study-image--banner picture,
+.case-study-image--banner .card-img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
-@media (min-width: 1280px) {
-  .case-study-image--banner {
-    background-image: var(--banner-desktop);
-  }
+.case-study-image--banner .card-img {
+  object-fit: cover;
+  object-position: center;
 }
 
 /* Looping video on a card (via cs.videos). The box keeps the same size as
