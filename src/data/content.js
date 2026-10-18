@@ -250,6 +250,12 @@ export const caseStudies = [
     companyInitial: "I",
     // longer label shown on the Home card only
     cardLabel: "INVYGO - Flexible car ownership, without the traditional complexity.",
+    // search-result title/description for the case study page (see RouteMeta.jsx)
+    seo: {
+      title: "Invygo Billing Redesign Case Study | Talal Jawaid",
+      description:
+        "Case study: how I redesigned Invygo's billing experience to recover $52K+ a month and cut billing support by about 23%.",
+    },
     // white-fill logo — shown on the accent-colored badge in the case study header
     logo: "/Logos/invygo.svg",
     // real visible bounds of the artwork inside its viewBox (same technique as
