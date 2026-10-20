@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 // Which banner crop applies: "phone" (<768px), "tablet" (768–1279px) or
-// "desktop" (>=1280px). Same breakpoints as the `.case-study-image--banner`
-// media queries in Home.css, for cards that need to pick one <video> source
+// "desktop" (>=1280px). Same breakpoints as the card image breakpoints
+// (see CardImage.jsx / Home.css), for cards that need to pick one <video> source
 // in JS instead of a CSS background-image.
 const TABLET = "(min-width: 768px)";
 const DESKTOP = "(min-width: 1280px)";
