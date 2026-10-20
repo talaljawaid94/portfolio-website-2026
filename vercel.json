@@ -1,4 +1,3 @@
 {
-  "redirects": [{ "source": "/archives", "destination": "/ai-experiments", "permanent": true }],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "redirects": [{ "source": "/archives", "destination": "/ai-experiments", "permanent": true }]
 }

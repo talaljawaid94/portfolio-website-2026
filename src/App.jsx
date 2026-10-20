@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Layout from "./components/Layout";
 import RouteMeta from "./components/RouteMeta";
@@ -17,9 +17,24 @@ function ScrollToTop() {
   return null;
 }
 
+// True on mouse/trackpad devices (the cursor ring only exists there). Reads
+// `false` on the server and during hydration, then the real value, so the
+// pre-rendered HTML and the first client render agree.
+const FINE_POINTER = "(hover: hover) and (pointer: fine)";
+function useFinePointer() {
+  return useSyncExternalStore(
+    (onChange) => {
+      const mq = window.matchMedia(FINE_POINTER);
+      mq.addEventListener("change", onChange);
+      return () => mq.removeEventListener("change", onChange);
+    },
+    () => window.matchMedia(FINE_POINTER).matches,
+    () => false
+  );
+}
+
 export default function App() {
-  const hasFinePointer =
-    typeof window !== "undefined" && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const hasFinePointer = useFinePointer();
 
   return (
     <>

@@ -39,3 +39,9 @@
 .site-loader.hide .site-loader-greeting {
   opacity: 0;
 }
+
+/* set on <html> by an inline script in index.html when the loader has already
+   played this session, so it never flashes on a repeat page load */
+.loader-seen .site-loader {
+  display: none;
+}
